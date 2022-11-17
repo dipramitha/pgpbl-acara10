@@ -21,6 +21,16 @@
         width: 100%;
         margin: 0px;
     }
+
+    #map {
+        width: auto;
+        height: calc(100% - 56px);
+        margin-top: 56px;
+    }
+
+    .container {
+        margin-top: 100px;
+    }
     </style>
 </head>
 
@@ -31,16 +41,39 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><i class="fas fa-map-marked-alt"></i>Peta Yogyakarta</a>
+            <a class="navbar-brand" href="#"><i class="fas fa-map-marked-alt"></i> Peta Lokasi Objek</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto"></ul>
+                <ul class="navbar-nav ms-auto">
+                    <?php if (auth()->loggedIn()) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="<?= base_url('objek') ?>">
+                            <i class="fas fa-database"></i> Input Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="<?= base_url('objek/table') ?>">
+                            <i class="fas fa-table"></i> Tabel Data</a>
+                    </li>
+                    <?php endif; ?>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"><i class="fas fa-info-circle"></i> Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= auth()->loggedIn() ? 'text-danger' : '' ?>"
+                            href="<?= auth()->loggedIn() ? base_url('logout') : base_url('login') ?>"><i
+                                class="fas fa-sign-in-alt"></i>
+                            <?= auth()->loggedIn() ? 'Logout' : 'Login' ?>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -48,6 +81,27 @@
     <div id="map"></div>
 
     <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-info-circle"></i> Info</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Peta Yogyakarta</p>
+                    <p>Dibuat oleh Prem</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map -->
+    <div id="map"></div>
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
