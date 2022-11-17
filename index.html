@@ -44,34 +44,16 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><i class="fas fa-map-marked-alt"></i> Peta Lokasi Objek</a>
+            <a class="navbar-brand" href="#"><i class="fas fa-map-marked-alt"></i> Peta Yogyakarta</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <?php if (auth()->loggedIn()) : ?>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?= base_url('objek') ?>">
-                            <i class="fas fa-database"></i> Input Data</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?= base_url('objek/table') ?>">
-                            <i class="fas fa-table"></i> Tabel Data</a>
-                    </li>
-                    <?php endif; ?>
-
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal"
                             data-bs-target="#exampleModal"><i class="fas fa-info-circle"></i> Info</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?= auth()->loggedIn() ? 'text-danger' : '' ?>"
-                            href="<?= auth()->loggedIn() ? base_url('logout') : base_url('login') ?>"><i
-                                class="fas fa-sign-in-alt"></i>
-                            <?= auth()->loggedIn() ? 'Logout' : 'Login' ?>
-                        </a>
                     </li>
                 </ul>
             </div>
